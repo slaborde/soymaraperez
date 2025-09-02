@@ -1,5 +1,5 @@
 title: "soymaraperez"
 description: "Ayudo a mamás trabajadoras a organizarse y a autocuidarse para criar desde la calma y el disfrute"
-baseurl: "/soymaraperez"  # Cambia esto por el nombre de tu repositorio
+baseurl: "/soymaraperez.github.io"  # Cambia esto por el nombre de tu repositorio
 url: "https://slaborde.github.io"   # Cambia TU_USUARIO por tu nombre de usuario
 theme: minima
