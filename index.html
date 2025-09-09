@@ -125,17 +125,20 @@ layout: default
       <p>Cuéntame sobre ti y cómo puedo ayudarte</p>
     </div>
     <div class="contact-content">
-      <form action="https://formspree.io/f/mnqewovr" method="POST" class="contact-form">
+      <form class="contact-form" data-endpoint="https://script.google.com/macros/s/AKfycbwGv2k6hMC85X1xHGCOBLCpQyCynj87S87NP1KSQBNfUxGmesdMHHQGnwErUMEvcn47_g/exec">
         <div class="form-group">
           <input type="text" name="name" placeholder="Tu nombre" required>
         </div>
         <div class="form-group">
-          <input type="email" name="_replyto" placeholder="Tu email" required>
+          <input type="email" name="email" placeholder="Tu email" required>
         </div>
         <div class="form-group">
           <textarea name="message" placeholder="Cuéntame sobre tu situación y cómo puedo ayudarte" required></textarea>
         </div>
+        <input type="hidden" name="_subject" value="Nuevo mensaje desde soymaraperez.com">
+        <input type="text" name="_gotcha" style="display:none">
         <button type="submit" class="submit-btn">Enviar mensaje</button>
+        <div class="form-status" aria-live="polite" style="margin-top:1rem"></div>
       </form>
     </div>
   </div>

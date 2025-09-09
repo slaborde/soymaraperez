@@ -127,6 +127,43 @@
     document.addEventListener('DOMContentLoaded', () => {
       const elements = document.querySelectorAll('.service-card, .section-header, .about-content, .resources-content');
       elements.forEach(el => observer.observe(el));
+
+      // AJAX submit for contact form (Google Apps Script)
+      const contactForm = document.querySelector('.contact-form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const statusEl = contactForm.querySelector('.form-status');
+          if (statusEl) statusEl.textContent = 'Enviando...';
+
+          try {
+            const formData = new FormData(contactForm);
+            const endpoint = contactForm.getAttribute('data-endpoint');
+            // Send as application/x-www-form-urlencoded to avoid CORS preflight
+            const body = new URLSearchParams({
+              name: formData.get('name') || '',
+              email: formData.get('email') || '',
+              message: formData.get('message') || '',
+              token: 'public-site'
+            });
+            const response = await fetch(endpoint, {
+              method: 'POST',
+              body
+            });
+
+            if (response.ok) {
+              if (statusEl) statusEl.textContent = '¡Gracias! Tu mensaje fue enviado.';
+              contactForm.reset();
+            } else {
+              const data = await response.json().catch(() => ({}));
+              if (statusEl) statusEl.textContent = data.error || 'Hubo un problema al enviar. Intenta más tarde.';
+            }
+          } catch (err) {
+            console.error('Contact form error:', err);
+            if (statusEl) statusEl.textContent = 'Error de red. Intenta de nuevo.';
+          }
+        });
+      }
     });
   </script>
 </body>
